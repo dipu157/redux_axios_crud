@@ -42,4 +42,49 @@ class DesignationController extends Controller
 
 
     }
+
+    public function deletedesignation(Request $request)
+    {
+        $id = $request->id;
+
+        Designation::where('id',$id)->delete();
+
+        return response([
+            'message' => "Successfully Deleted"
+        ],200); // States Code
+
+    }
+
+    public function updatedesignation(Request $request)
+    {
+        try{
+
+        $id = $request->id;
+
+        $name = $request->input('name');
+        $short_name = $request->input('short_name');
+        $description = $request->input('description');
+        $user_id = $request->input('user_id');
+
+        $result = Designation::where('id', $id)->update([
+
+            'name' => $name,
+            'short_name' => $short_name,
+            'description' => $description,
+            'user_id' => $user_id,
+        ]);
+
+        return response([
+            'message' => "Successfully Edited"
+        ],200); // States Code
+
+        }
+        catch(Exception $exception){
+            return response([
+                'message' => $exception->getMessage()
+            ],400);
+        }
+
+
+    }
 }

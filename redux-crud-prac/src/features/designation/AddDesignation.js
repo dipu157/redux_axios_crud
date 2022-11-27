@@ -1,43 +1,31 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { updateDepartment } from './DepartmentSlice';
+import { useNavigate } from "react-router-dom";
+import { createDesignation } from './DesignationSlice';
 
-const EditDepartment = () => {
+const AddDesignation = () => {
 
-  const {id} = useParams();
+  const [name, setName] = useState("");
+  const [short_name, setShortName] = useState("");
+  const [description, setDescription] = useState("");
+  const [user_id, setUserId] = useState(1);
 
-
-  const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [idd, setId] = useState(location.state.id);
-  const [name, setName] = useState(location.state.name);
-  const [short_name, setShortName] = useState(location.state.short_name);
-  const [description, setDescription] = useState(location.state.description);
-  const [user_id, setUserId] = useState(1);
-
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    const deptDataUpdate = { idd, name, short_name, description, user_id };
-    console.warn(deptDataUpdate);
-    dispatch(updateDepartment(deptDataUpdate));
-    navigate("/view-departments", { replace: true });
+    const desigData = { name, short_name, description, user_id };
+   // console.warn(department);
+    dispatch(createDesignation(desigData));
+    navigate("/view-designations", { replace: true });
   };
-
 
   return (
     <div>
-      <h2>Edit Department</h2>
+      <h2>Add Designation</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-field">
-        <input
-            type="hidden"
-            value={idd} name="id"
-            onChange={(e) => setId(e.target.value)}
-          />
           <label htmlFor="name">Name: </label>
           <input
             type="text"
@@ -61,10 +49,10 @@ const EditDepartment = () => {
             onChange={(e) => setDescription(e.target.value)}
           />
         </div>
-        <button type="submit">Update</button>
+        <button type="submit">Add</button>
       </form>
     </div>
   )
 }
 
-export default EditDepartment
+export default AddDesignation

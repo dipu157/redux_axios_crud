@@ -11,15 +11,12 @@ export const createDepartment = createAsyncThunk(
 
   export const updateDepartment = createAsyncThunk(
     "Department/update",
-    async (id,deptDataUpdate) => {
+    async (deptDataUpdate) => {
       const headers = { 
         'Content-Type': 'application/json'
       };
       const res = await axios.post(
-        "http://localhost:8000/api/updatedepartment/"+id,
-        headers,
-        deptDataUpdate,
-      );
+        "http://localhost:8000/api/updatedepartment/"+deptDataUpdate.idd,deptDataUpdate);
       
       return res.data;
 
@@ -51,7 +48,7 @@ export const DepartmentSlice = createSlice({
         [createDepartment.fulfilled]: (state, action) => {
             state.push(action.payload);
         },
-        updateDepartment: (state, action) => {
+        [updateDepartment]: (state, action) => {
             return [...action.payload];
           },
         [deleteDept.fulfilled]: (state, action) => {

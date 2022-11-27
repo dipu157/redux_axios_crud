@@ -5,8 +5,9 @@ import Home from "../pages/Home"
 import AddDepartment from "../features/department/AddDepartment"
 import ViewDepartment from "../features/department/ViewDepartment"
 import EditDepartment from "../features/department/EditDepartment"
-// import AddDuration from "../features/designation/AddDuration"
-// import ViewDuration from "../features/designation/ViewDuration"
+import AddDesignation from "../features/designation/AddDesignation"
+import ViewDesignation from "../features/designation/ViewDesignation"
+import EditDesignation from "../features/designation/EditDesignation"
 
 
 const Rout = () => {
@@ -20,8 +21,9 @@ const Rout = () => {
           <Route path="/view-departments" element={<ViewDepartment />} />
           <Route path="/edit-department/:id" element={<EditDepartment />} />
 
-          {/* <Route path="/add-designation" element={<AddDuration />} />
-          <Route path="/view-designations" element={<ViewDuration />} />           */}
+          <Route path="/add-designation" element={<AddDesignation />} />
+          <Route path="/view-designations" element={<ViewDesignation />} />    
+          <Route path="/edit-designation/:id" element={<EditDesignation />} />      
         </Routes>
       </main>
     </BrowserRouter>

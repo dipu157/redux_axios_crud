@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { updateDepartment } from './DepartmentSlice';
+import { updateDesignation } from './DesignationSlice';
 
-const EditDepartment = () => {
+const EditDesignation = () => {
 
   const {id} = useParams();
-
+ // console.log("Dept ID is :", id);
 
   const location = useLocation();
   const dispatch = useDispatch();
@@ -21,16 +21,16 @@ const EditDepartment = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const deptDataUpdate = { idd, name, short_name, description, user_id };
-    console.warn(deptDataUpdate);
-    dispatch(updateDepartment(deptDataUpdate));
-    navigate("/view-departments", { replace: true });
+    const desigDataUpdate = { idd, name, short_name, description, user_id };
+    console.warn(id, desigDataUpdate);
+    dispatch(updateDesignation(desigDataUpdate));
+    navigate("/view-designations", { replace: true });
   };
 
 
   return (
     <div>
-      <h2>Edit Department</h2>
+      <h2>Edit Designation</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-field">
         <input
@@ -67,4 +67,4 @@ const EditDepartment = () => {
   )
 }
 
-export default EditDepartment
+export default EditDesignation

@@ -31,3 +31,5 @@ Route::get('/user',[UserController::class, 'User']);
 
  Route::get('/getdesignations',[DesignationController::class, 'allDesignations']);
  Route::post('/storedesignation',[DesignationController::class, 'storedesignation']);
+ Route::post('/deletedesignation/{id}',[DesignationController::class, 'deletedesignation']);
+ Route::post('/updatedesignation/{id}',[DesignationController::class, 'updatedesignation']);
